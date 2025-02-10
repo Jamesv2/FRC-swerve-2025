@@ -15,7 +15,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
@@ -44,6 +46,7 @@ public class RobotContainer
    */
   public RobotContainer()
   {
+    //regaster pathplanner commands here
     configureBindings();
   }
 
@@ -56,6 +59,8 @@ public class RobotContainer
    */
   private void configureBindings()
   {
+    new JoystickButton(angle_joystick, 3).onTrue(new InstantCommand(drivebase::zeroGyro) );
+
     drivebase.removeDefaultCommand();
     drivebase.setDefaultCommand(
 
